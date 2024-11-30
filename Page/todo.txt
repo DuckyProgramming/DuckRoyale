@@ -1,0 +1,92 @@
+5
+
+
+6
+
+
+38 - pulse rocket , 3
+39 - flamethrower heal self , 8
+40 - pellet baller , 7
+41 - baller heal self , 7
+42 - machine gun crit self , 29d
+43 - damage over time punch , 9
+44 - crit apply medic , 11
+45 - sniper heal self , 6
+46 - damage over time pistol , 1
+47 - deflector punch , 9 , 16
+48 - pistol heal self , 1 , 29
+49 - direct rocket , 3
+50 - balling in every direction , 7
+51 - push spam rocket launcher , 18 , 20
+52 - light engineer , 10
+53 - pistol vulnerable , 1
+54 - short sniper , 6
+55 - spam baller , 7 , 18
+56 - short pistol , 1
+57 - machine gun stop , 2
+58 - flame rocket launcher , 2 ,8
+59 - remover punch , 9 ,17
+60 - slow rocket launcher stop , 37 , 57
+61 - smoke rocket launcher , 3
+62 - medic shield , 11
+63 - short damage over time pistol , 1 , 46 , 56
+64 - machine gun heal self full , 29
+65 - barrage baller , 7 , 31
+66 - hyper medic shield , 14 , 62 , [add functionality]
+67 - barrage rocket launcher heal self , 26 , 31
+68 - crit pistol stop , 1 , 57
+69 - damage over time spread sniper , 12 , 25
+70 - barrage flame rocket launcher , 58 , 31 , 58 [2,8]
+71 - damage over time heal self baller , 7
+
+32 - phase rocket , 2
+33 - flame heal self , 6
+34 - pellet baller , 5
+35 - baller heal self , 5
+36 - machine gun crit self , 1
+37 - damage over time punch , 7
+38 - crit apply medic , 9
+39 - sniper heal self , 4
+40 - deflector punch , 7
+41 - direct rocket , 2
+42 - light engineer , 8
+43 - vulnerable pistol , 1
+44 - machine gun stop , 1
+45 - flame rocket launcher , 2
+46 - remover punch , 7
+47 - slow rocket launcher stop , 37
+48 - smoke rocket launcher , 2
+49 - machine gun heal self full , 24
+50 - damage over time sniper , 4
+51 - damage over time heal self baller , 5
+52 - barrage baller , 5
+53 - barrage rocket launcher heal self , 21
+54 - barrage flame rocket launcher , 45
+
+74 - slow rocket launcher flip
+75 - swapper sniper
+76 - crit apply medic shield
+77 - barrage radius rocket launcher
+78 - pistol stop vulnerable
+79 - spread sniper heal self
+80 - flame baller
+81 - baller heal self stop
+
+56 - slow flip rocket , 2
+57 - swapper sniper , 14
+58 - barrage radius rocket , 26
+59 - pistol stop vulnerable , 43
+60 - flame baller , 5
+61 - baller heal self stop , 5
+
+
+
+for(let a=0,la=types.mission.length;a<la;a++){
+    for(let b=0,lb=types.mission[a].wave.length;b<lb;b++){
+        for(let c=0,lc=types.mission[a].wave[b].length;c<lc;c++){
+            if(findName(types.mission[a].wave[b][c][0],types.player)==-1){
+                print(types.mission[a].wave[b][c][0],findName(types.mission[a].wave[b][c][0],types.player))
+            }
+        }
+    }
+}
