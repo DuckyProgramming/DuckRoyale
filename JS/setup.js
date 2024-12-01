@@ -10,11 +10,11 @@ function mouseClicked(){
     switch(stage.scene){
         case 'menu':
             for(let a=0,la=3;a<la;a++){
-                for(let b=0,lb=a==2?6:4;b<lb;b++){
+                for(let b=0,lb=a==0?6:4;b<lb;b++){
                     if(inPointBox({position:inputs.mouse},{position:{x:width/2-lb*100+100+b*200,y:120+a*70},width:180,height:60})){
                         switch(a){
                             case 0:
-                                menu.players=b*5+5
+                                menu.players=b==5?100:b*10+10
                             break
                             case 1:
                                 menu.gaming=b+1

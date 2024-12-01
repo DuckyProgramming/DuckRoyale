@@ -4,8 +4,8 @@ function mainloop(layer){
     switch(stage.scene){
         case 'menu':
             for(let a=0,la=2;a<la;a++){
-                for(let b=0,lb=4;b<lb;b++){
-                    if(a==0&&menu.players==b*5+5||a==1&&menu.gaming==b+1){
+                for(let b=0,lb=a==0?6:4;b<lb;b++){
+                    if(a==0&&menu.players==(b==5?100:b*10+10)||a==1&&menu.gaming==b+1){
                         fill(100,200,100)
                     }else{
                         fill(100)
@@ -17,9 +17,9 @@ function mainloop(layer){
             rect(0.5*width,360,180,60,10)
             fill(0)
             for(let a=0,la=2;a<la;a++){
-                for(let b=0,lb=4;b<lb;b++){
+                for(let b=0,lb=a==0?6:4;b<lb;b++){
                     textSize(20)
-                    text([`${b*5+5} Players`,`${b+1} Gaming`][a],width/2-lb*100+100+b*200,120+a*70)
+                    text([`${b==5?100:b*10+10} Players`,`${b+1} Gaming`][a],width/2-lb*100+100+b*200,120+a*70)
                 }
             }
             text('Begin',0.5*width,360)

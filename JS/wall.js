@@ -40,6 +40,12 @@ class wall{
                 this.carry=[]
                 this.disable=false
             break
+            case 7:
+                this.pos=[]
+                for(let a=0,la=this.height/game.tileset[1];a<la;a++){
+                    this.pos.push(-this.width*0.8+(this.position.x+this.position.y*0.3+a*55)%(this.width*1.6))
+                }
+            break
             case 8: case 9: case 12: case 19:
                 this.recharge=0
             break
@@ -109,6 +115,12 @@ class wall{
             break
             case 22:
                 this.spin=sin(this.position.x/6+this.position.y/10)*20
+            break
+            case 23:
+                this.balls=[]
+                for(let a=0,la=this.width*this.height/225;a<la;a++){
+                    this.balls.push([-this.width/2+(a*0.19%1)*this.width,random(-this.height/2,this.height/2),random(30,40),random(0,1),random(0,360),floor(random(4,7))])
+                }
             break
         }
     }
@@ -490,6 +502,14 @@ class wall{
                 }else if(game.level==8||game.level==11){
                     layer.fill(100)
                     layer.rect(0,0,this.width+1,this.height+1,2)
+                }else if(game.level==9){
+                    if(this.height<game.tileset[1]){
+                        layer.fill(40,120,60)
+                        layer.rect(0,0,this.width+1,this.height,this.height/2)
+                    }else{
+                        layer.fill(...mergeColor([25,175,25],[100,100,100],constrain(this.position.y/game.edge[1]*2-0.8,0,1)))
+                        layer.rect(0,0,this.width+1,this.height+1)
+                    }
                 }else{
                     layer.fill(120)
                     layer.rect(0,0,this.width+1,this.height+1)
@@ -505,7 +525,11 @@ class wall{
                 }
             break
             case 3:
-                layer.fill(120,200,200)
+                if(game.level==9){
+                    layer.fill(60,160,200)
+                }else{
+                    layer.fill(120,200,200)
+                }
                 layer.rect(0,0,this.width+1,this.height+1)
             break
             case 4:
@@ -525,11 +549,20 @@ class wall{
                 layer.rect(0,0,this.width+1,this.height+1)
             break
             case 7:
-                layer.fill(50)
-                layer.rect(0,0,this.width+1,this.height+1)
-                layer.fill(70)
-                for(let a=0,la=this.height/game.tileset[1];a<la;a++){
-                    layer.rect(0,-this.height/2+(a+0.5)*game.tileset[1],this.width+1,game.tileset[1]/5)
+                if(game.level==9){
+                    layer.fill(160,90,20)
+                    layer.rect(0,0,this.width*3,this.height+1)
+                    layer.fill(180,110,40)
+                    for(let a=0,la=this.height/game.tileset[1];a<la;a++){
+                        layer.rect(this.pos[a],-this.height/2+(a+0.5)*game.tileset[1],this.width,game.tileset[1]/10)
+                    }
+                }else{
+                    layer.fill(50)
+                    layer.rect(0,0,this.width+1,this.height+1)
+                    layer.fill(70)
+                    for(let a=0,la=this.height/game.tileset[1];a<la;a++){
+                        layer.rect(0,-this.height/2+(a+0.5)*game.tileset[1],this.width+1,game.tileset[1]/5)
+                    }
                 }
             break
             case 8:
@@ -605,6 +638,8 @@ class wall{
             case 17:
                 if(game.level==8||game.level==11){
                     layer.fill(100)
+                }else if(game.level==9){
+                    layer.fill(...mergeColor([25,175,25],[100,100,100],constrain(this.position.y/game.edge[1]*2-0.8,0,1)))
                 }else{
                     layer.fill(120)
                 }
@@ -617,6 +652,8 @@ class wall{
             case 18:
                 if(game.level==8||game.level==11){
                     layer.fill(100)
+                }else if(game.level==9){
+                    layer.fill(...mergeColor([25,175,25],[100,100,100],constrain(this.position.y/game.edge[1]*2-0.8,0,1)))
                 }else{
                     layer.fill(120)
                 }
@@ -643,6 +680,8 @@ class wall{
             case 20:
                 if(game.level==8||game.level==11){
                     layer.fill(100)
+                }else if(game.level==9){
+                    layer.fill(...mergeColor([25,175,25],[100,100,100],constrain(this.position.y/game.edge[1]*2-0.8,0,1)))
                 }else{
                     layer.fill(120)
                 }
@@ -655,6 +694,8 @@ class wall{
             case 21:
                 if(game.level==8||game.level==11){
                     layer.fill(100)
+                }else if(game.level==9){
+                    layer.fill(...mergeColor([25,175,25],[100,100,100],constrain(this.position.y/game.edge[1]*2-0.8,0,1)))
                 }else{
                     layer.fill(120)
                 }
@@ -673,6 +714,14 @@ class wall{
                     layer.textSize(15)
                     layer.text(`Z${floor((this.position.x-game.tileset[0]/2)/(16*game.tileset[0]))+1} - ${floor((this.position.y-game.tileset[1]*15.5)/(16*game.tileset[1]))+1}`,0,0)
                 }
+            break
+            case 23:
+                layer.fill(180-this.position.y/game.edge[1]*30,90+this.position.y/game.edge[1]*15,30)
+                layer.rect(0,0,this.width+1,this.height+1)
+            break
+            case 24:
+                layer.fill(130,120,60)
+                layer.rect(0,0,this.width+1,this.height+1)
             break
         }
         //layer.stroke(255,150,50)
@@ -729,6 +778,16 @@ class wall{
                 }catch(error){
                     print("Invalid Weapon ID:"+this.weapon,error)
                     this.remove=true
+                }
+            break
+            case 23:
+                for(let a=0,la=this.balls.length;a<la;a++){
+                    layer.fill(
+                        180-(this.position.y+this.balls[a][1])/game.edge[1]*30+this.balls[a][3]*30,
+                        90+(this.position.y+this.balls[a][1])/game.edge[1]*15+this.balls[a][3]*30,
+                        30+this.balls[a][3]*30
+                    )
+                    regPoly(layer,this.balls[a][0],this.balls[a][1],this.balls[a][5],this.balls[a][2]/2,this.balls[a][2]/2,this.balls[a][4])
                 }
             break
         }
@@ -1012,10 +1071,14 @@ class wall{
                 case 8:
                     this.recharge=1800
                     c.weapon.uses=min(c.weaponData.uses==1?c.weaponData.uses:c.weaponData.uses*game.ammoMult,c.weapon.uses+ceil(c.weaponData.uses*game.ammoMult/2))
+                    this.weapon=floor(random(0,20))==0?floor(random(36,40)):floor(random(0,9))+floor(random(0,1.5))*floor(random(1,4))*9
+                    this.type=[8,9,16,16][floor(random(0,4))]
                 break
                 case 9:
                     this.recharge=1800
                     c.life=min(c.base.life,c.life+c.base.life/(c.weaponType==11||c.weaponType==13||c.weaponType==14||c.weaponType==62||c.weaponType==66?1:2))
+                    this.weapon=floor(random(0,20))==0?floor(random(36,40)):floor(random(0,9))+floor(random(0,1.5))*floor(random(1,4))*9
+                    this.type=[8,9,16,16][floor(random(0,4))]
                 break
                 case 10:
                     c.manage[2]=true
@@ -1036,6 +1099,7 @@ class wall{
                     this.recharge=1800
                     c.newWeaponSet(this.weapon)
                     this.weapon=floor(random(0,20))==0?floor(random(36,40)):floor(random(0,9))+floor(random(0,1.5))*floor(random(1,4))*9
+                    this.type=[8,9,16,16][floor(random(0,4))]
                 break
                 case 19:
                     this.recharge=1800

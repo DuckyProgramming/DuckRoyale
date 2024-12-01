@@ -1106,7 +1106,8 @@ class player{
                             }
                             if(targets.length>0){
                                 target=targets[floor(random(targets.length))]
-                                this.target.position.x=target[0]+random(-10,10)
+                                this.target.position.x=target[0]+random(-120,120)
+                                this.target.position.y=target[1]
                             }else{
                                 for(let a=0,la=entities.walls.length;a<la;a++){
                                     for(let b=0,lb=entities.walls[a].length;b<lb;b++){
@@ -1118,7 +1119,8 @@ class player{
                                 }
                                 if(targets.length>0){
                                     target=targets[floor(random(targets.length))]
-                                    this.target.position.x=target[0]+random(-10,10)
+                                    this.target.position.x=target[0]+random(-120,120)
+                                    this.target.position.y=target[1]
                                 }else{
                                     for(let a=0,la=entities.walls.length;a<la;a++){
                                         for(let b=0,lb=entities.walls[a].length;b<lb;b++){
@@ -1130,10 +1132,24 @@ class player{
                                     }
                                     if(targets.length>0){
                                         target=targets[floor(random(targets.length))]
-                                        this.target.position.x=target[0]+random(-10,10)
+                                        this.target.position.x=target[0]+random(-120,120)
+                                        this.target.position.y=target[1]
                                     }else{
-                                        this.target.position.x=this.position.x+random(-240,240)
-                                        this.target.position.y=this.position.x+random(-80,80)
+                                        for(let a=0,la=entities.walls.length;a<la;a++){
+                                            for(let b=0,lb=entities.walls[a].length;b<lb;b++){
+                                                let c=entities.walls[a][b]
+                                                if(c.recharge==0){
+                                                    targets.push([c.position.x,c.position.y-c.height/2])
+                                                }
+                                            }
+                                        }
+                                        if(targets.length>0){
+                                            target=targets[floor(random(targets.length))]
+                                            this.target.position.x=target[0]+random(-120,120)
+                                        }else{
+                                            this.target.position.x=this.base.position.x+random(-240,240)
+                                            this.target.position.y=this.position.y+random(-80,80)
+                                        }
                                     }
                                 }
                             }
@@ -1628,7 +1644,7 @@ class player{
                         this.carryMoney=0
                     }
                     this.stats.deaths++
-                }else{
+                }else if(this.id>0){
                     this.die.timer++
                     if(this.die.timer>180&&(game.classicRespawn&&!game.past||game.hunt!=this.id&&game.hunt>0)){
                         this.respawn()
