@@ -508,82 +508,82 @@ function displayMain(layer,layer2,effective,keyStore){
     }
     for(let a=0,la=layer.length;a<la;a++){
         stage.scale=min(width/layer[a].width,height/layer[a].height)
-        if(game.gaming==1){
+    }
+    if(game.gaming==1){
+        image(
+            layer[0],
+            width/2,height/2,width,height
+        )
+        if(game.level==11){
             image(
-                layer[0],
+                layer2[0],
                 width/2,height/2,width,height
             )
-            if(game.level==11){
-                image(
-                    layer2[0],
-                    width/2,height/2,width,height
-                )
-            }
-        }else if(game.gaming==2){
+        }
+    }else if(game.gaming==2){
+        image(
+            layer[0],
+            width*3/4,height/2,width/2,height
+        )
+        image(
+            layer[1],
+            width/4,height/2,width/2,height
+        )
+        if(game.level==11){
             image(
-                layer[0],
+                layer2[0],
                 width*3/4,height/2,width/2,height
             )
             image(
-                layer[1],
+                layer2[1],
                 width/4,height/2,width/2,height
             )
-            if(game.level==11){
-                image(
-                    layer2[0],
-                    width*3/4,height/2,width/2,height
-                )
-                image(
-                    layer2[1],
-                    width/4,height/2,width/2,height
-                )
-            }
-        }else{
+        }
+    }else{
+        image(
+            layer[0],
+            width*3/4,height/4,width/2,height/2
+        )
+        if(game.level==11){
             image(
-                layer[0],
+                layer2[0],
                 width*3/4,height/4,width/2,height/2
+            )
+        }
+        if(game.gaming>=2){
+            image(
+                layer[1],
+                width/4,height/4,width/2,height/2
             )
             if(game.level==11){
                 image(
-                    layer2[0],
-                    width*3/4,height/4,width/2,height/2
-                )
-            }
-            if(game.gaming>=2){
-                image(
-                    layer[1],
+                    layer2[1],
                     width/4,height/4,width/2,height/2
                 )
-                if(game.level==11){
-                    image(
-                        layer2[1],
-                        width/4,height/4,width/2,height/2
-                    )
-                }
             }
-            if(game.gaming>=3){
+        }
+        if(game.gaming>=3){
+            image(
+                layer[2],
+                width/4,height*3/4,width/2,height/2
+            )
+            if(game.level==11){
                 image(
-                    layer[2],
+                    layer2[2],
                     width/4,height*3/4,width/2,height/2
                 )
-                if(game.level==11){
-                    image(
-                        layer2[2],
-                        width/4,height*3/4,width/2,height/2
-                    )
-                }
             }
-            if(game.gaming>=4){
+        }
+        if(game.gaming>=4){
+            image(
+                layer[3],
+                width*3/4,height*3/4,width/2,height/2
+            )
+            if(game.level==11){
                 image(
-                    layer[3],
+                    layer2[3],
                     width*3/4,height*3/4,width/2,height/2
                 )
-                if(game.level==11){
-                    image(
-                        layer2[3],
-                        width*3/4,height*3/4,width/2,height/2
-                    )
-                }
             }
         }
     }
